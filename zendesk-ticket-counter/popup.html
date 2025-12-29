@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 200px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h3>High Alert Tickets</h3>
+  <h5>Refesh the page</h5>
+  <div id="ticket-count">Loading...</div>
+  <div id="last-updated"></div>
+
+  <script>
+    function updatePopup() {
+      chrome.runtime.connect().postMessage({ type: "GET_COUNT" });
+    }
+
+    window.onload = () => {
+      updatePopup();
+      setInterval(updatePopup, 10000);
+    };
+     
+    // Listening for the open queue count from the background script.
+    chrome.runtime.onMessage.addListener(function(request) {
+      if (request.count !== undefined) {
+        document.getElementById("ticket-count").textContent = `Tickets: ${request.count}`;
+        document.getElementById("last-updated").textContent = `Last Updated: ${new Date().toLocaleTimeString()}`;
+      }
+    });
+  </script>
+</body>
+</html>
