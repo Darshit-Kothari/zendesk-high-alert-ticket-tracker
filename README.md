@@ -64,4 +64,4 @@ Developed to improve operational visibility and responsiveness for support engin
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/zendesk-high-alert-ticket-tracker.git
+   git clone https://github.com/Darshit-Kothari/zendesk-high-alert-ticket-tracker.git
